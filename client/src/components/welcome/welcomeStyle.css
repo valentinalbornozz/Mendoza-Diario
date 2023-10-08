@@ -1,0 +1,24 @@
+.welcome-container {
+  position: relative;
+  top: 80px; /* Ajusta la distancia desde la parte superior según tu encabezado */
+  left: 20px; /* Ajusta la distancia desde la izquierda */
+}
+
+@media (max-width: 768px) {
+  /* Estilos para pantallas más pequeñas (responsivo) */
+  .welcome-container {
+    top: 60px; /* Ajusta la distancia desde la parte superior en pantallas más pequeñas */
+    left: 10px; /* Ajusta la distancia desde la izquierda en pantallas más pequeñas */
+  }
+}
+.title {
+  font-size: 24px; /* Tamaño de fuente para el título */
+  font-weight: bold; /* Negrita para el título */
+  margin-bottom: 10px; /* Espacio inferior entre el título y el subtítulo */
+}
+
+/* Estilo para el subtítulo */
+.subtitle {
+  font-size: 18px; /* Tamaño de fuente para el subtítulo */
+  font-weight: normal; /* Puedes usar 'normal' para la fuente regular */
+}
