@@ -7,9 +7,9 @@ export const Login = async (req, res) => {
       email: req.body.email,
     },
   });
-  if (!user) return res.status(404).json({ message: "Usuario no encontrado" });
+  if (!user) return res.status(404).json({ msg: "Usuario no encontrado" });
   const match = await argon2.verify(user.password, req.body.password);
-  if (!match) return res.status(400).json({ message: "Contraseña incorrecta" });
+  if (!match) return res.status(400).json({ msg: "Contraseña incorrecta" });
   req.session.userId = user.uuid;
   const uuid = user.uuid;
   const name = user.name;
@@ -22,7 +22,7 @@ export const Me = async (req, res) => {
   if (!req.session.userId) {
     return res
       .status(401)
-      .json({ message: "Por favor, inicie sesión en su cuenta" });
+      .json({ msg: "Por favor, inicie sesión en su cuenta" });
   }
   const user = await User.findOne({
     attributes: ["uuid", "name", "email", "role"],
@@ -30,14 +30,14 @@ export const Me = async (req, res) => {
       uuid: req.session.userId,
     },
   });
-  if (!user) return res.status(404).json({ message: "Usuario no encontrado" });
+  if (!user) return res.status(404).json({ msg: "Usuario no encontrado" });
   res.status(200).json(user);
 };
 
 export const logOut = (req, res) => {
   req.session.destroy((err) => {
     if (err)
-      return res.status(400).json({ message: "No se pudo cerrar la sesió" });
-    res.status(200).json({ message: "Se ha cerrado la sesión" });
+      return res.status(400).json({ msg: "No se pudo cerrar la sesión" });
+    res.status(200).json({ msg: "Anda telah logout" });
   });
 };

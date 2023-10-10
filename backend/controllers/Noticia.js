@@ -41,9 +41,6 @@ export const getNotice = async (req, res) => {
           "seccionId",
           "autorId",
         ],
-        where: {
-          userId: req.userId,
-        },
         include: [
           {
             model: User,
@@ -120,11 +117,9 @@ export const getNoticeById = async (req, res) => {
 export const createNotice = async (req, res) => {
   try {
     if (!req.files || !req.files.portada)
-      return res
-        .status(400)
-        .json({
-          message: "No se ha subido la imagen de portada o imagen extra",
-        });
+      return res.status(400).json({
+        message: "No se ha subido la imagen de portada o imagen extra",
+      });
 
     const { titulo, subtitulo, parrafos, etiquetas, seccionId, autorId } =
       req.body;
@@ -218,11 +213,9 @@ export const updateNotice = async (req, res) => {
               .json({ message: "Imágenes de portada no válidas" });
 
           if (portadaFile.size > 10000000)
-            return res
-              .status(422)
-              .json({
-                message: "La imagen de portada debe tener menos de 10 MB",
-              });
+            return res.status(422).json({
+              message: "La imagen de portada debe tener menos de 10 MB",
+            });
 
           portadaFileName = portadaFile.md5 + ext;
 
@@ -292,7 +285,7 @@ export const deleteNotice = async (req, res) => {
     });
     if (!notice)
       return res.status(404).json({ message: "Noticia no encontrada" });
-    if (req.role === "admin" || req.userId === notice.userId) {
+    if (req.role === "user" || req.role === "admin") {
       // Eliminar imágenes asociadas si existen
       const imageFileName = notice.image; // Cambio de nombre a "image"
 
