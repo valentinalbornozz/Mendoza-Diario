@@ -4,7 +4,6 @@ import Welcome from "../../components/welcome/Welcome.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../../Auth/authSlice.js";
-import AddNews from "../../components/formularios/Notices/AddNotices/addNotices.jsx";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -24,7 +23,6 @@ const Dashboard = () => {
   return (
     <Layout>
       <Welcome />
-      <AddNews />
     </Layout>
   );
 };

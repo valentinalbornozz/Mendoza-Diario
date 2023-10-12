@@ -284,3 +284,16 @@
   text-align: center;
   margin-bottom: 20px;
 }
+
+/*Alert Boostrap*/
+.text-center {
+  text-align: center;
+}
+.custom-alert {
+  background-color: #2c0b0e;
+  color: #ea868f;
+  border: 1px solid #842029;
+  padding: 1rem 0rem;
+  margin-bottom: 1rem;
+  border-radius: 0.36rem;
+}

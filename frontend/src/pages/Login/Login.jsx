@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { LoginUser, reset } from "../../Auth/authSlice.js";
 import { Alert, Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-
+import "../../components/dashboard/formularios/formulario.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,7 +29,7 @@ const Login = () => {
     <section className="flexCT">
       <div className="form-container">
         <form onSubmit={Auth} className="form">
-          <Alert variant="danger text-center" show={isError}>
+          <Alert className="alert text-center custom-alert" show={isError}>
             {message}
           </Alert>
           <span className="titulo-login">login</span>

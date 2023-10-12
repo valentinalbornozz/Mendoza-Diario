@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
-import Notification from '../../../../components/notificacion/Notificacion.jsx';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Notification from "../../../../components/notificacion/Notificacion.jsx";
 import { imagenPorIdSeccion } from "../../../../service/imagen/Imagen.js";
 import { listaSecciones } from "../../../../service/seccion/Listar.js";
 import "./lista-secciones.css";
@@ -9,11 +9,11 @@ function ListaSecciones() {
   const [secciones, setSecciones] = useState([]);
   const [iconos, setIconos] = useState();
   const [showNotification, setShowNotification] = useState(false);
-  const [notificationMessage, setNotificationMessage] = useState('');
+  const [notificationMessage, setNotificationMessage] = useState("");
 
   const handleNotificationClose = () => {
     setShowNotification(false);
-    setNotificationMessage('');
+    setNotificationMessage("");
   };
 
   useEffect(() => {
@@ -37,7 +37,10 @@ function ListaSecciones() {
           const iconoData = await imagenPorIdSeccion(seccion.id);
           iconosPorSeccion[seccion.id] = iconoData;
         } catch (error) {
-          console.error(`Error al obtener el icono de la seccion ${seccion.nombre}:`, error);
+          console.error(
+            `Error al obtener el icono de la seccion ${seccion.nombre}:`,
+            error
+          );
         }
       }
       setIconos(iconosPorSeccion);
@@ -47,23 +50,30 @@ function ListaSecciones() {
   }, [secciones]);
 
   const handleEliminarSeccion = (id) => {
-    fetch(`http://localhost:8080/api/seccion/eliminar/${id}`, {
-      method: 'POST'
+    fetch(`http://localhost:3000/sections/${id}`, {
+      method: "POST",
     })
-      .then(async response => {
+      .then(async (response) => {
         if (response.ok) {
           const responseData = await response.text();
           setNotificationMessage(responseData);
           setShowNotification(true);
           // Actualizar la lista de secciones después de eliminar
-          setSecciones(prevSecciones => prevSecciones.filter(seccion => seccion.id !== id));
+          setSecciones((prevSecciones) =>
+            prevSecciones.filter((seccion) => seccion.id !== id)
+          );
         } else {
-          setNotificationMessage('Error, una o mas noticias utilizan esta seccion' + response.statusText);
+          setNotificationMessage(
+            "Error, una o mas noticias utilizan esta seccion" +
+              response.statusText
+          );
           setShowNotification(true);
         }
       })
-      .catch(error => {
-        setNotificationMessage('Error al eliminar la seccion: ' + error.message);
+      .catch((error) => {
+        setNotificationMessage(
+          "Error al eliminar la seccion: " + error.message
+        );
         setShowNotification(true);
       });
   };
@@ -89,7 +99,7 @@ function ListaSecciones() {
               <td>
                 {seccion.icono && iconos[seccion.id] && (
                   <img
-                    src={([iconos[seccion.id]])}
+                    src={[iconos[seccion.id]]}
                     alt="Foto"
                     className="icono-image"
                   />
@@ -103,19 +113,19 @@ function ListaSecciones() {
                   Eliminar
                 </button>
                 <Link to={`/administrador/seccion/editar/${seccion.codigo}`}>
-                  <button
-                    className="eliminar-button"
-                  >
-                    Editar
-                  </button>
+                  <button className="eliminar-button">Editar</button>
                 </Link>
               </td>
-
             </tr>
           ))}
         </tbody>
       </table>
-      {showNotification && <Notification message={notificationMessage} onClose={handleNotificationClose} />}
+      {showNotification && (
+        <Notification
+          message={notificationMessage}
+          onClose={handleNotificationClose}
+        />
+      )}
     </div>
   );
 }
