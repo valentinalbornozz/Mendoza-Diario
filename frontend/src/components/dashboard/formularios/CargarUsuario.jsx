@@ -40,10 +40,13 @@ function CargarUsuario() {
     formData.append("password2", data.password2);
 
     try {
-      const response = await fetch("http://localhost:8080/api/usuario/nuevo", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "http://localhost:8080/api/usuario/registrar",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (response.ok) {
         const responseData = await response.text();
@@ -138,14 +141,14 @@ function CargarUsuario() {
                   {errors.imagen ? errors.imagen.message : imagenName}
                 </span>
               </div>
-              <input
-                type="file"
-                id="imagen"
-                {...register("imagen", {
-                  required: "Por favor, sube una imagen.",
-                })}
-              />
             </label>
+            <input
+              type="file"
+              id="imagen"
+              {...register("imagen", {
+                required: "Por favor, sube una imagen.",
+              })}
+            />
           </div>
           <div>
             <label htmlFor="email">Email</label>

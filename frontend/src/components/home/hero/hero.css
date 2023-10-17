@@ -8,8 +8,8 @@
   background-image: linear-gradient(
     to bottom,
     transparent 50%,
-    rgba(0, 0, 0, 0.4) 65%,
-    rgba(0, 0, 0, 0.7) 95%
+    rgba(0,0,0,0.4) 65%,
+    rgba(0,0,0, 0.7) 95%
   );
 }
 .hero img {

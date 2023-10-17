@@ -28,7 +28,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <Link to="/administrador/dashboard">Administrador</Link>
+                <Link to="/administrador">Administrador</Link>
               </li>
               <li>
                 <Link to="/seccion/sanrafael">San Rafael</Link>

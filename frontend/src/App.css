@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Diphylleia&family=Kablammo&family=Montserrat:ital,wght@0,200;0,400;0,500;0,600;0,700;0,800;1,200;1,400;1,500;1,600;1,700;1,800&family=Play&family=Poppins:wght@200;300;400;500;600&family=Rock+3D&family=Tilt+Prism&display=swap");
+
 * {
   padding: 0;
   margin: 0;
@@ -10,8 +11,6 @@ body {
   color: #333;
   background-color: #fff;
   line-height: 1.6575em;
-  list-style: none;
-  text-decoration: none;
   overflow-x: hidden;
 }
 
@@ -25,20 +24,18 @@ h6,
 span,
 label {
   cursor: pointer;
-  list-style: none;
-  text-decoration: none;
 }
 
 a {
-  color: #333;
   text-decoration: none;
+  color: #333;
 }
 
-a h1 {
+a h1{
   transition: transform 0.3s;
 }
 
-a:hover h1 {
+a:hover h1{
   color: #333;
   transform: scale(1.02);
 }
@@ -89,11 +86,11 @@ li {
   padding: 20px 0;
 }
 
-.paddingB {
+.paddingB{
   padding-bottom: 40px;
 }
 
-.paddingBS {
+.paddingBS{
   padding-bottom: 20px;
 }
 
@@ -161,22 +158,14 @@ label {
   box-shadow: rgba(0, 0, 0, 0.2) 0 15px 10px -10px;
 }
 
-.popularNews,
-.popular,
-.seccion,
-.seccion-row {
+.popularNews, .popular, .seccion, .seccion-row{
   margin-bottom: 10vh;
 }
 
-.error {
+.error{
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
   margin-top: 50px;
-}
-header li a {
-  text-decoration: none;
-  font-family: "Poppins", sans-serif;
-  list-style: none;
 }

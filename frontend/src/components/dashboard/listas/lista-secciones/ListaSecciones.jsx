@@ -50,7 +50,7 @@ function ListaSecciones() {
   }, [secciones]);
 
   const handleEliminarSeccion = (id) => {
-    fetch(`http://localhost:3000/sections/${id}`, {
+    fetch(`http://localhost:8080/api/seccion/eliminar/${id}`, {
       method: "POST",
     })
       .then(async (response) => {
@@ -92,28 +92,28 @@ function ListaSecciones() {
         </thead>
         <tbody>
           {secciones.map((seccion) => (
-            <tr key={seccion.id}>
-              <td>{seccion.id}</td>
-              <td>{seccion.codigo}</td>
-              <td>{seccion.nombre}</td>
-              <td>
+            <tr key={seccion.id} className="border-seccion">
+              <td className="table-body-seccion">{seccion.id}</td>
+              <td className="table-body-seccion">{seccion.codigo}</td>
+              <td className="table-body-seccion">{seccion.nombre}</td>
+              <td className="table-body-seccion">
                 {seccion.icono && iconos[seccion.id] && (
                   <img
                     src={[iconos[seccion.id]]}
                     alt="Foto"
-                    className="icono-image"
+                    className="icono-image "
                   />
                 )}
               </td>
-              <td>
+              <td className="button-seccion-td">
                 <button
-                  className="eliminar-button"
+                  className="seccion-button"
                   onClick={() => handleEliminarSeccion(seccion.id)}
                 >
                   Eliminar
                 </button>
                 <Link to={`/administrador/seccion/editar/${seccion.codigo}`}>
-                  <button className="eliminar-button">Editar</button>
+                  <button className="seccion-button">Editar</button>
                 </Link>
               </td>
             </tr>

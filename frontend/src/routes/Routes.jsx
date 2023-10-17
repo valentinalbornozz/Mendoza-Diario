@@ -6,7 +6,6 @@ import Homepages from "../pages/home/Homepages.jsx";
 import Privacidad from "../pages/privacidad/Privacidad.jsx";
 import SeccionPage from "../pages/seccionpage/SeccionPage.jsx";
 import SinglePage from "../pages/singlepage/SinglePage.jsx";
-
 const MainRoutes = () => {
   return (
     <layout>

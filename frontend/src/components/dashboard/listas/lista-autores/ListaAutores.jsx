@@ -50,7 +50,7 @@ function ListaAutores() {
   }, [autores]);
 
   const handleEliminarAutor = (id) => {
-    fetch(`http://localhost:3000/autor/${id}`, {
+    fetch(`http://localhost:8080/api/autor/eliminar/${id}`, {
       method: "POST",
     })
       .then(async (response) => {
@@ -89,11 +89,11 @@ function ListaAutores() {
         </thead>
         <tbody>
           {autores.map((autor) => (
-            <tr key={autor.id}>
-              <td>{autor.id}</td>
-              <td>{autor.nombre}</td>
-              <td>{autor.apellido}</td>
-              <td>
+            <tr key={autor.id} className="border-autor">
+              <td className="table-body-seccion">{autor.id}</td>
+              <td className="table-body-seccion">{autor.nombre}</td>
+              <td className="table-body-seccion">{autor.apellido}</td>
+              <td className="table-body-seccion">
                 {autor.foto && fotos[autor.id] && (
                   <img
                     src={[fotos[autor.id]]}
@@ -102,15 +102,15 @@ function ListaAutores() {
                   />
                 )}
               </td>
-              <td>
+              <td className="button-autor-td">
                 <button
-                  className="eliminar-button"
+                  className="autor-button"
                   onClick={() => handleEliminarAutor(autor.id)}
                 >
                   Eliminar
                 </button>
                 <Link to={`/administrador/autor/editar/${autor.id}`}>
-                  <button className="eliminar-button">Editar</button>
+                  <button className="autor-button">Editar</button>
                 </Link>
               </td>
             </tr>

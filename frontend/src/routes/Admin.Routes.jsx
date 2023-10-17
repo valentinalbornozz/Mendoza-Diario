@@ -13,21 +13,24 @@ import ListaNoticias from "../components/dashboard/listas/lista-noticias/ListaNo
 import ListaSecciones from "../components/dashboard/listas/lista-secciones/ListaSecciones.jsx";
 import ListaUsuarios from "../components/dashboard/listas/lista-usuarios/ListaUsuarios.jsx";
 import Footer from "../components/footer/Footer.jsx";
-
-import Login from "../pages/Login/Login.jsx";
+import HeaderDashboard from "../components/header/HeaderDashboard/HeaderDashboard";
+import VistaPrueba from "../components/dashboard/formularios/VistaPrueba.jsx";
 import Dashboard from "../pages/Dashboard/Dashboard.jsx";
-import HeaderDashboard from "../components/header/HeaderDashboard/HeaderDashboard.jsx";
+
+import App from "../components/Auth/App.jsx";
 
 const AdminRoutes = () => {
   return (
     <layout>
       <HeaderDashboard />
       <ReactDomRoutes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<App />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<CargarNoticia />} />
         <Route path="/noticia/nueva" element={<CargarNoticia />} />
         <Route path="/noticia/listar" element={<ListaNoticias />} />
         <Route path="/noticia/editar/:id" element={<EditarNoticia />} />
+        <Route path="/noticia/:id" element={<VistaPrueba />} />
         <Route path="/seccion/nueva" element={<CargarSeccion />} />
         <Route path="/seccion/listar" element={<ListaSecciones />} />
         <Route path="/seccion/editar/:codigo" element={<EditarSeccion />} />

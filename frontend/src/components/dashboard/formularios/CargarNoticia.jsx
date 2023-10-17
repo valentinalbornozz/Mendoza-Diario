@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import Notification from "../../../components/notificacion/Notificacion";
 import { listaAutores } from "../../../service/autor/Listar.js";
 import { listaSecciones } from "../../../service/seccion/Listar.js";
-import { faFileImage, faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileImage } from "@fortawesome/free-solid-svg-icons";
 
 const CargarNoticia = () => {
   const {
@@ -183,19 +183,14 @@ const CargarNoticia = () => {
           <div>
             <label className="cargar-archivo input" htmlFor="portada">
               <div className="icono">
-                <FontAwesomeIcon icon={faUpload} />
+                <FontAwesomeIcon icon={faFileImage} />
               </div>
               <div className="texto">
                 <span>Subir portada</span>
               </div>
             </label>
-            <input
-              type="file"
-              id="portada"
-              name="portada"
-              onChange={handlePortadaChange}
-              accept=".png, .jpg, .jpeg"
-            />
+            <input type="file" id="portada" onChange={handlePortadaChange} />
+
             {errors.portada && (
               <span className="error-msg">{errors.portada.message}</span>
             )}
@@ -207,12 +202,11 @@ const CargarNoticia = () => {
                 <FontAwesomeIcon icon={faFileImage} />
               </div>
               <div className="texto">
-                <span>Imágenes extra</span>
+                <span>Imagenes extra</span>
               </div>
             </label>
             <input
               type="file"
-              accept=".png, .jpg, .jpeg"
               id="imagenes"
               onChange={handleImagenesChange}
               multiple

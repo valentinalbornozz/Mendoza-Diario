@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+/* ---- FORMULARIO ---- */
 .orange {
   color: #ff7a01;
 }
@@ -19,7 +19,7 @@
   justify-self: center;
   /* transition: all 0.5s; */
   color: white;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .form-container .titulo {
@@ -27,9 +27,8 @@
   color: white;
   font-size: 1.5rem;
   font-weight: 800;
-  margin-bottom: 20px;
-  font-family: "Poppins", sans-serif;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .form-container .form .input {
@@ -41,15 +40,14 @@
   outline: none;
   padding: 10px;
   margin-bottom: 20px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
+  font-weight: bold;
+  border-radius: 5px;
   transition: all 0.2s ease-in-out;
   border-left: 1px solid transparent;
 }
 
 .form-container .form .input:focus {
   border-left: 5px solid #ff7a01;
-  font-family: "Poppins", sans-serif;
 }
 
 .form-container .form .textarea {
@@ -59,13 +57,13 @@
   outline: none;
   background-color: #013747;
   color: white;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
+  font-weight: bold;
   resize: none;
+  border-radius: 5px;
+  font-family: "Poppins", sans-serif;
   max-height: 150px;
   margin-bottom: 20px;
   border-left: 1px solid transparent;
-
   transition: all 0.2s ease-in-out;
 }
 
@@ -77,7 +75,6 @@
   display: flex;
   gap: 10px;
   cursor: pointer;
-  font-family: "Poppins", sans-serif;
 }
 
 .form-container .form .button-container .send-button {
@@ -85,11 +82,10 @@
   background: #ff7a01;
   padding: 10px;
   color: #001925;
+  border-radius: 5px;
   text-align: center;
-  font-family: "Poppins", sans-serif;
   font-weight: bold;
   border: 1px solid transparent;
-  border-radius: 5px;
   transition: all 0.2s ease-in-out;
 }
 
@@ -97,8 +93,6 @@
   background: transparent;
   border: 1px solid #ff7a01;
   color: #ff7a01;
-  font-family: "Poppins", sans-serif;
-
   cursor: pointer;
 }
 
@@ -112,9 +106,8 @@
   text-align: center;
   padding: 10px;
   color: #ff7a01;
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
   border-radius: 5px;
+  font-weight: bold;
   background: #001925;
   clip-path: polygon(
     0 0,
@@ -195,7 +188,8 @@
   outline: none;
   padding: 10px;
   margin-bottom: 20px;
-  font-weight: 400;
+  border-radius: 5px;
+  font-weight: bold;
   transition: all 0.2s ease-in-out;
   border-left: 1px solid transparent;
   cursor: pointer;
@@ -211,7 +205,7 @@
   outline: none;
   padding: 10px;
   margin-bottom: 20px;
-  font-weight: 500;
+  font-weight: bold;
   transition: all 0.5s ease-in-out;
   border-left: 1px solid transparent;
   cursor: pointer;
@@ -220,7 +214,9 @@
   cursor: pointer;
 }
 #imagenes,
-#portada {
+#foto,
+#portada,
+#imagen {
   color: white;
   width: 100%;
   background-color: #004053;
@@ -228,7 +224,8 @@
   outline: none;
   padding: 10px;
   margin-bottom: 20px;
-  font-weight: 400;
+  font-weight: bold;
+  border-radius: 5px;
   transition: all 0.5s ease-in-out;
   border-left: 1px solid transparent;
   cursor: pointer;
@@ -248,6 +245,7 @@
       0 100%
     );
     justify-self: center;
+    border-radius: 10px;
     /* transition: all 0.5s; */
     color: white;
   }
@@ -283,17 +281,4 @@
   font-weight: 700;
   text-align: center;
   margin-bottom: 20px;
-}
-
-/*Alert Boostrap*/
-.text-center {
-  text-align: center;
-}
-.custom-alert {
-  background-color: #2c0b0e;
-  color: #ea868f;
-  border: 1px solid #842029;
-  padding: 1rem 0rem;
-  margin-bottom: 1rem;
-  border-radius: 0.36rem;
 }

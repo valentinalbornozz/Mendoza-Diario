@@ -1,29 +1,12 @@
-/* eslint-disable no-unused-vars */
-import {
-  faBars,
-  faTimes,
-  faSignOutAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import HeadDash from "./headDashboard";
-import { Button } from "react-bootstrap";
 import "./HeaderStyle.css";
-import { useDispatch, useSelector } from "react-redux";
-import { LogOut, reset } from "../../../Auth/authSlice.js";
 
 export default function HeaderDashboard() {
   const [navbar, setNavbar] = useState(false);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
-
-  const logout = () => {
-    dispatch(LogOut());
-    dispatch(reset());
-    navigate("/");
-  };
 
   return (
     <div className="full-header">
@@ -36,52 +19,29 @@ export default function HeaderDashboard() {
               onClick={() => setNavbar(false)}
             >
               <li>
-                <NavLink to="/administrador/noticia/nueva">
-                  Cargar Noticia
-                </NavLink>
+                <Link to="/administrador/noticia/nueva">Cargar Noticia</Link>
               </li>
               <li>
-                <NavLink to="/administrador/noticia/listar">
-                  Listar Noticias
-                </NavLink>
+                <Link to="/administrador/noticia/listar">Listar Noticias</Link>
               </li>
               <li>
-                <NavLink to="/administrador/seccion/nueva">
-                  Cargar Seccion
-                </NavLink>
+                <Link to="/administrador/seccion/nueva">Cargar Seccion</Link>
               </li>
               <li>
-                <NavLink to="/administrador/seccion/listar">
-                  Listar Secciones
-                </NavLink>
+                <Link to="/administrador/seccion/listar">Listar Secciones</Link>
               </li>
               <li>
-                <NavLink to="/administrador/autor/nuevo">Cargar Autor</NavLink>
+                <Link to="/administrador/autor/nuevo">Cargar Autor</Link>
               </li>
               <li>
-                <NavLink to="/administrador/autor/listar">
-                  Listar Autores
-                </NavLink>
-              </li>
-
-              <li>
-                <NavLink to="/administrador/usuario/nuevo">
-                  Cargar Usuario
-                </NavLink>
+                <Link to="/administrador/autor/listar">Listar Autores</Link>
               </li>
               <li>
-                <NavLink to="/administrador/usuario/listar">
-                  Listar Usuarios
-                </NavLink>
+                <Link to="/administrador/usuario/nuevo">Cargar Usuario</Link>
               </li>
-              <Button
-                type="submit"
-                onClick={logout}
-                className="logout" // Desactivar el botón cuando está cargando
-              >
-                <FontAwesomeIcon icon={faSignOutAlt} className="icon" />
-                Logout
-              </Button>
+              <li>
+                <Link to="/administrador/usuario/listar">Listar Usuarios</Link>
+              </li>
             </ul>
             <button className="barIco" onClick={() => setNavbar(!navbar)}>
               {navbar ? (

@@ -23,11 +23,15 @@
   border-inline: 1px solid black;
 }
 
-
 @media screen and (max-width: 768px) {
   .cotizacion {
+    margin-top: 90px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .cotizacion {
     flex-direction: row;
-    margin-top: 15%;
   }
 
   .cotizacion div {

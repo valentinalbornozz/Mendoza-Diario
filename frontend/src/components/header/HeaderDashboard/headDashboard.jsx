@@ -3,7 +3,6 @@ import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import srcBanner from '../../../assets/image/Mendoza-News-Banner.png';
-import './HeaderStyle.css';
 
 function HeadDash() {
 

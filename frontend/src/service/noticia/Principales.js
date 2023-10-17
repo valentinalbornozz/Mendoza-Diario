@@ -1,4 +1,6 @@
-import imagen1 from "../../assets/image/ImagenPersonal - copia.jpg";
+import axios from "axios";
+
+import imagen1 from "../../assets/image/ImagenPersonal - copia.JPG";
 import imagen2 from "../../assets/image/team-3 - copia.jpg";
 import imagen3 from "../../assets/image/UrielElizaur.Fg-1343 - copia.jpg";
 
@@ -162,102 +164,78 @@ export const popular = [
   },
 ];
 
-// TODAS LAS NOTICIAS
+// Obtener todas las noticias
 export const listaNoticias = async () => {
   try {
-    const response = await fetch("http://localhost:8080/api/noticia/listar");
-    if (!response.ok) {
-      throw new Error("Error al obtener la lista de noticias");
-    }
-    const data = await response.json();
-    return data;
+    const response = await axios.get(
+      "http://localhost:8080/api/noticia/listar"
+    );
+    return response.data;
   } catch (error) {
-    throw error; // Propaga el error para que el llamador pueda manejarlo
+    console.error("Error al obtener la lista de noticias: ", error);
+    throw error;
   }
 };
 
-// NOTICIA POR ID
+// Obtener noticia por ID
 export const noticiaPorId = async (id) => {
   try {
-    const response = await fetch(`http://localhost:8080/api/noticia/${id}`);
-    if (!response.ok) {
-      throw new Error("Error al obtener la noticia por id. Response not ok.");
-    }
-    const data = await response.json();
-    return data;
+    const response = await axios.get(`http://localhost:8080/api/noticia/${id}`);
+    return response.data;
   } catch (error) {
-    console.error("Error al obtener noticia por id: ", error);
+    console.error("Error al obtener noticia por ID: ", error);
     throw error;
   }
 };
 
-// UNA NOTICIA DE CADA SECCION
+// Obtener noticias resumidas
 export const noticiasResumen = async () => {
   try {
-    const response = await fetch("http://localhost:8080/api/noticia/seccion");
-    if (!response.ok) {
-      throw new Error("Error al obtener la lista de noticias");
-    }
-    const data = await response.json();
-    return data;
+    const response = await axios.get(
+      "http://localhost:8080/api/noticia/seccion"
+    );
+    return response.data;
   } catch (error) {
-    throw error; // Propaga el error para que el llamador pueda manejarlo
+    console.error("Error al obtener noticias resumidas: ", error);
+    throw error;
   }
 };
 
-// NOTICIAS POR ID DE AUTOR
+// Obtener noticias por ID de autor
 export const noticiasPorAutor = async (id) => {
   try {
-    const response = await fetch(
+    const response = await axios.get(
       `http://localhost:8080/api/noticia/autor/${id}`
     );
-    if (!response.ok) {
-      throw new Error(
-        "Error al obtener las noticias por id de autor. Response not ok."
-      );
-    }
-    const data = await response.json();
-    return data;
+    return response.data;
   } catch (error) {
-    console.error("Error al obtener noticias por id de autor: ", error);
+    console.error("Error al obtener noticias por ID de autor: ", error);
     throw error;
   }
 };
 
-// NOTICIAS POR ID DE SECCION
+// Obtener noticias por ID de sección
 export const noticiasPorSeccion = async (id) => {
   try {
-    const response = await fetch(
+    const response = await axios.get(
       `http://localhost:8080/api/noticia/seccion/${id}`
     );
-    if (!response.ok) {
-      throw new Error(
-        "Error al obtener las noticias por id de seccion. Response not ok."
-      );
-    }
-    const data = await response.json();
-    return data;
+    return response.data;
   } catch (error) {
-    console.error("Error al obtener noticias por id de seccion: ", error);
+    console.error("Error al obtener noticias por ID de sección: ", error);
     throw error;
   }
 };
 
-// 6 NOTICIAS POR ID DE SECCION
+// Obtener 6 noticias por ID de sección
 export const noticias6PorSeccion = async (id) => {
   try {
-    const response = await fetch(
+    const response = await axios.get(
       `http://localhost:8080/api/noticia/seccion/${id}/6`
     );
-    if (!response.ok) {
-      throw new Error(
-        "Error al obtener 6 noticiaS por id de seccion. Response not ok."
-      );
-    }
-    const data = await response.json();
-    return data;
+    return response.data;
   } catch (error) {
-    console.error("Error al obtener 6 noticias por id de seccion: ", error);
+    console.error("Error al obtener 6 noticias por ID de sección: ", error);
     throw error;
   }
 };

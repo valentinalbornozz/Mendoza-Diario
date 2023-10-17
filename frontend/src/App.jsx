@@ -1,11 +1,11 @@
 import {
   BrowserRouter,
   Route,
-  Routes as ReactDomRoutes,
+  Routes as ReactDomRoutes
 } from "react-router-dom";
 import "./App.css";
-import MainRoutes from "./routes/Routes";
 import AdminRoutes from "./routes/Admin.Routes";
+import MainRoutes from "./routes/Routes";
 
 function App() {
   return (
