@@ -115,7 +115,6 @@ header li a:hover {
   }
 }
 .btn-logout {
-  flex-basis: 70%;
   background: #ff7a01;
   padding: 10px;
   color: #001925;
@@ -127,7 +126,7 @@ header li a:hover {
   cursor: pointer;
 }
 
-.btc-logout:hover {
+.btn-logout:hover {
   background: transparent;
   border: 1px solid #ff7a01;
   color: #ff7a01;

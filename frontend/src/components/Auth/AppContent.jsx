@@ -1,73 +1,35 @@
-import * as React from "react";
+/* eslint-disable react/prop-types */
+import React from "react";
+import { connect } from "react-redux";
+import { logout } from "../../reducer/authActions.js";
+import LoginForm from "../../pages/login/Login"; // Asume que has creado este componente
 
-import { request, setAuthHeader } from "../helpers/axios_helper";
-
-import Buttons from "./Buttons";
-import AuthContent from "./AuthContent";
-import LoginForm from "./LoginForm";
-import WelcomeContent from "./WelcomeContent";
-export default class AppContent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      componentToShow: "welcome",
-    };
-  }
-
-  login = () => {
-    this.setState({ componentToShow: "login" });
-  };
-
-  logout = () => {
-    this.setState({ componentToShow: "welcome" });
-    setAuthHeader(null);
-  };
-
-  onLogin = (e, username, password) => {
-    e.preventDefault();
-    request("POST", "/login", {
-      login: username,
-      password: password,
-    })
-      .then((response) => {
-        setAuthHeader(response.data.token);
-        this.setState({ componentToShow: "messages" });
-      })
-      .catch((error) => {
-        setAuthHeader(null);
-        this.setState({ componentToShow: "welcome" });
-      });
-  };
-
-  onRegister = (event, firstName, lastName, username, password) => {
-    event.preventDefault();
-    request("POST", "/register", {
-      firstName: firstName,
-      lastName: lastName,
-      login: username,
-      password: password,
-    })
-      .then((response) => {
-        setAuthHeader(response.data.token);
-        this.setState({ componentToShow: "messages" });
-      })
-      .catch((error) => {
-        setAuthHeader(null);
-        this.setState({ componentToShow: "welcome" });
-      });
-  };
-
+class AppContent extends React.Component {
   render() {
     return (
       <div>
-        <Buttons login={this.login} logout={this.logout} />
-
-        {this.state.componentToShow === "welcome" && <WelcomeContent />}
-        {this.state.componentToShow === "login" && (
-          <LoginForm onLogin={this.onLogin} onRegister={this.onRegister} />
+        {this.props.isAuthenticated ? (
+          // Contenido protegido
+          <div>
+            <h1>Contenido Protegido</h1>
+            <p>Bienvenido a la sección protegida de la aplicación.</p>
+            <button onClick={this.props.logout}>Cerrar sesión</button>
+          </div>
+        ) : (
+          // Formulario de inicio de sesión
+          <LoginForm onLogin={this.onLogin} />
         )}
-        {this.state.componentToShow === "messages" && <AuthContent />}
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+const mapDispatchToProps = {
+  logout,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContent);

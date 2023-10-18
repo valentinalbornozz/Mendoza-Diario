@@ -1,4 +1,4 @@
-import { Route, Routes as ReactDomRoutes } from "react-router-dom";
+import { Route, Routes as ReactDomRoutes, Navigate } from "react-router-dom";
 import CargarAutor from "../components/dashboard/formularios/CargarAutor.jsx";
 import CargarNoticia from "../components/dashboard/formularios/CargarNoticia.jsx";
 import CargarSeccion from "../components/dashboard/formularios/CargarSeccion.jsx";
@@ -16,17 +16,16 @@ import Footer from "../components/footer/Footer.jsx";
 import HeaderDashboard from "../components/header/HeaderDashboard/HeaderDashboard";
 import VistaPrueba from "../components/dashboard/formularios/VistaPrueba.jsx";
 import Dashboard from "../pages/Dashboard/Dashboard.jsx";
-
-import App from "../components/Auth/App.jsx";
+import { connect } from "react-redux";
+import LoginForm from "../pages/login/Login.jsx";
 
 const AdminRoutes = () => {
   return (
     <layout>
       <HeaderDashboard />
       <ReactDomRoutes>
-        <Route path="/login" element={<App />} />
+        <Route path="/login" element={<LoginForm />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/" element={<CargarNoticia />} />
         <Route path="/noticia/nueva" element={<CargarNoticia />} />
         <Route path="/noticia/listar" element={<ListaNoticias />} />
         <Route path="/noticia/editar/:id" element={<EditarNoticia />} />
@@ -46,4 +45,8 @@ const AdminRoutes = () => {
   );
 };
 
-export default AdminRoutes;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps)(AdminRoutes);
