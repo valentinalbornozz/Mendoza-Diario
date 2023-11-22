@@ -5,10 +5,16 @@ import com.mendozanews.apinews.excepciones.MiException;
 import com.mendozanews.apinews.repositorios.UsuarioRepositorio;
 import com.mendozanews.apinews.servicios.UsuarioServicio;
 import java.util.List;
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +31,12 @@ public class UsuarioControlador {
 
     @Autowired
     private UsuarioServicio us;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private UsuarioServicio usuarioServicio;
 
     @GetMapping("/listar")
     public List<Usuario> listaUsuarios() {
@@ -83,13 +95,24 @@ public class UsuarioControlador {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String nombre, @RequestParam String password) {
+    public ResponseEntity<String> login(@RequestParam String email, @RequestParam String password) {
         try {
-            us.login(nombre, password);
-            return ResponseEntity.ok("Exito al iniciar sesión");
-        } catch (MiException ex) {
+            // Autenticar al usuario
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email,
+                    password);
+            Authentication authentication = authenticationManager.authenticate(authenticationToken);
+
+            // Establecer la autenticación en el contexto de seguridad
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            // Obtener detalles del usuario autenticado usando el servicio
+            UserDetails userDetails = usuarioServicio.loadUserByUsername(email);
+
+            // Devolver el mensaje de éxito
+            return ResponseEntity.ok("Inicio de sesión exitoso para el usuario: " + userDetails.getUsername());
+        } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body("Error al iniciar sesión: " + ex.getMessage());
+                    .body("Error en el inicio de sesión: " + ex.getMessage());
         }
     }
 

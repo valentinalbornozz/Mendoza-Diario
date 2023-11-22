@@ -225,22 +225,4 @@ public class UsuarioServicio implements UserDetailsService {
         }
 
     }
-
-    public void configure(SecurityConfig securityConfig, AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this)
-                .passwordEncoder(securityConfig.passwordEncoder());
-    }
-
-    @Transactional
-    public void login(String nombre, String password) throws MiException {
-        Usuario usuario = buscarPorNombreUsuario(nombre);
-
-        if (usuario != null && passwordEncoder.matches(password, usuario.getPassword())) {
-            // Autenticación exitosa
-            // Puedes almacenar detalles de autenticación o tokens aquí
-        } else {
-            // Autenticación fallida
-            throw new MiException("Usuario o contraseña incorrectos");
-        }
-    }
 }
