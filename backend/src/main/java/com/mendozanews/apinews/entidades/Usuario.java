@@ -35,7 +35,7 @@ public class Usuario {
     @Column(name = "nombre_usuario")
     private String nombreUsuario;
     private String email;
-    private String password;
+    public String password;
     private Boolean alta;
     private String telefono;
 

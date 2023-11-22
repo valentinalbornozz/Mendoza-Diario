@@ -1,16 +1,19 @@
 package com.mendozanews.apinews.servicios;
 
+import com.mendozanews.apinews.SecurityConfig;
 import com.mendozanews.apinews.entidades.Imagen;
 import com.mendozanews.apinews.entidades.Usuario;
 import com.mendozanews.apinews.enums.Rol;
 import com.mendozanews.apinews.excepciones.MiException;
 import com.mendozanews.apinews.repositorios.UsuarioRepositorio;
+
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -18,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -32,6 +36,9 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     ImagenServicio is;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     // CARGA UN USUARIO
     @Transactional
@@ -217,5 +224,23 @@ public class UsuarioServicio implements UserDetailsService {
             throw new MiException("Error al crear el admin");
         }
 
+    }
+
+    public void configure(SecurityConfig securityConfig, AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(this)
+                .passwordEncoder(securityConfig.passwordEncoder());
+    }
+
+    @Transactional
+    public void login(String nombre, String password) throws MiException {
+        Usuario usuario = buscarPorNombreUsuario(nombre);
+
+        if (usuario != null && passwordEncoder.matches(password, usuario.getPassword())) {
+            // Autenticación exitosa
+            // Puedes almacenar detalles de autenticación o tokens aquí
+        } else {
+            // Autenticación fallida
+            throw new MiException("Usuario o contraseña incorrectos");
+        }
     }
 }
