@@ -207,22 +207,27 @@ public class UsuarioServicio implements UserDetailsService {
     @Transactional
     public void usuarioAdmin() throws MiException {
         try {
-            Usuario usuario = new Usuario();
-            usuario.setNombre("admin");
-            usuario.setApellido("admin");
-            usuario.setEmail("admin@admin");
-            usuario.setNombreUsuario("admin");
-            usuario.setTelefono("123456789");
-            usuario.setPassword(new BCryptPasswordEncoder().encode("123456"));
-            usuario.setRol(Rol.ADMIN);
-            usuario.setAlta(true);
-            Date fechaRegistro = new Date();
-            usuario.setFechaAlta(fechaRegistro);
-            usuario.setImagen(null);
-            ur.save(usuario);
+            // Verifica si el usuario admin ya existe
+            Usuario adminOptional = ur.buscarPorEmail("admin@admin");
+            if (adminOptional == null) {
+                Usuario usuario = new Usuario();
+                usuario.setNombre("admin");
+                usuario.setApellido("admin");
+                usuario.setEmail("admin@admin");
+                usuario.setNombreUsuario("admin");
+                usuario.setTelefono("123456789");
+                usuario.setPassword(passwordEncoder.encode("admin"));
+                usuario.setRol(Rol.ADMIN);
+                usuario.setAlta(true);
+                Date fechaRegistro = new Date();
+                usuario.setFechaAlta(fechaRegistro);
+                usuario.setImagen(null);
+                ur.save(usuario);
+            }
+        } catch (UsernameNotFoundException e) {
+            throw new MiException("Error al crear el usuario admin: Usuario no encontrado");
         } catch (Exception e) {
-            throw new MiException("Error al crear el admin");
+            throw new MiException("Error al crear el usuario admin");
         }
-
     }
 }
