@@ -5,7 +5,7 @@ import { login } from "../../reducer/authActions.js";
 import { setAuthHeader } from "../../helpers/axios_helper.jsx";
 import axios from "axios";
 import "./login2.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Login2 = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Login2 = () => {
         },
         {
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         }
       );
@@ -40,7 +40,9 @@ const Login2 = () => {
         dispatch(login(data.username, data.password));
         setSuccessMessage("Inicio de sesión exitoso.");
         setError("");
-        navigate('/administrador/', { state: { userData: response.data } });
+        navigate("/administrador/noticia/nueva", {
+          state: { userData: response.data },
+        });
       } else {
         setError("Error al iniciar sesión. Verifica tus credenciales.");
         setSuccessMessage("");
@@ -56,12 +58,13 @@ const Login2 = () => {
     }
   };
 
-
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         {error && <span className="error-msg">{error}</span>}
-        {successMessage && <span className="success-msg">{successMessage}</span>}
+        {successMessage && (
+          <span className="success-msg">{successMessage}</span>
+        )}
 
         <div>
           <label htmlFor="username">Usuario</label>

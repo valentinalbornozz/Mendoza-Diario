@@ -1,26 +1,31 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import Heading from '../../../../components/heading/Heading.jsx';
-import './seccion.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import Heading from "../../../../components/heading/Heading.jsx";
+import "./seccion.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Seccion(props) {
   // console.log(props.idSeccion);
-  const [portadas, setPortadas] = useState([])
-  const [lista, setLista] = useState([])
-  const [urlIconoSeccion, setIconoSeccion] = useState()
+  const [portadas, setPortadas] = useState([]);
+  const [lista, setLista] = useState([]);
+  const [urlIconoSeccion, setIconoSeccion] = useState();
 
-  //TRAYENDO EL ICONO DE CADA SECCION QUE VA EN EL HEADING = 
+  //TRAYENDO EL ICONO DE CADA SECCION QUE VA EN EL HEADING =
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const response = await axios.get(`http://localhost:8080/api/v1/icono/seccion/${props.idSeccion}`, { responseType: "arraybuffer" })
-        const imageUrl = URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
+        const response = await axios.get(
+          `http://localhost:8080/api/v1/icono/seccion/${props.idSeccion}`,
+          { responseType: "arraybuffer" }
+        );
+        const imageUrl = URL.createObjectURL(
+          new Blob([response.data], { type: response.headers["content-type"] })
+        );
         setIconoSeccion(imageUrl);
       };
       fetchData();
@@ -29,32 +34,36 @@ export default function Seccion(props) {
     }
   }, [props.seccion]);
 
-
-  //TRAYENDO LAS NOTICIAS POPULARES DE CADA SECCION 
+  //TRAYENDO LAS NOTICIAS POPULARES DE CADA SECCION
 
   useEffect(() => {
     try {
       const fetchData = async () => {
+        const response = await axios.get(
+          `http://localhost:8080/api/v1/noticias_populares/${props.seccion}?offset=0&limit=100`
+        );
+        const data = response.data;
 
-        const response = await axios.get(`http://localhost:8080/api/v1/noticias_populares/${props.seccion}?offset=0&limit=100`)
-        const data = response.data
+        setLista(data);
+      };
 
-        setLista(data)
-      }
-
-      fetchData()
+      fetchData();
     } catch (error) {
-      console.log(error, "ERRORRRRRRRRRRRRRRRRRRRRRRRRRR")
+      console.log(error, "ERRORRRRRRRRRRRRRRRRRRRRRRRRRR");
     }
-  }, [])
-
+  }, []);
 
   //TRAYENDO LA PORTADA DE LAS NOTICIAS POR EL ID
   useEffect(() => {
     const fetchData = async (id) => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/v1/portada/noticia/${id}`, { responseType: "arraybuffer" });
-        const imageUrl = URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
+        const response = await axios.get(
+          `http://localhost:8080/api/v1/portada/noticia/${id}`,
+          { responseType: "arraybuffer" }
+        );
+        const imageUrl = URL.createObjectURL(
+          new Blob([response.data], { type: response.headers["content-type"] })
+        );
         return imageUrl;
       } catch (error) {
         console.error("Error al obtener las portadas: ", error);
@@ -100,18 +109,16 @@ export default function Seccion(props) {
         settings: {
           slidesToShow: 1,
           rows: 3,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
-
   return (
-
-    <section className='seccion'>
-
-      <Heading title={props.seccion} urlIconoSeccion={urlIconoSeccion} /> {/*Cambiar heading */}
+    <section className="seccion">
+      <Heading title={props.seccion} urlIconoSeccion={urlIconoSeccion} />{" "}
+      {/*Cambiar heading */}
       <Slider {...settings}>
         {lista.map((val, index) => {
           //  console.log("esto es val" , val);
@@ -131,7 +138,6 @@ export default function Seccion(props) {
                     </Link>
                   </div>
                   {/* HASTA ACÁ */}
-
                 </div>
                 <div className="text row">
                   <Link to={`/noticia/${val.titulo}/${val.noticiaId}`}>
@@ -139,15 +145,28 @@ export default function Seccion(props) {
                   </Link>
 
                   <div className="fecha">
-
-                    <i className='fas fa-calendar-days'>
-                      <label htmlFor=''>{new Date().toLocaleDateString()} </label></i>
-                    <label> <p>  Por <strong>{val.autorResDto.nombre + " " + val.autorResDto.apellido}</strong></p></label>
+                    <i className="fas fa-calendar-days">
+                      <label htmlFor="">
+                        {new Date().toLocaleDateString()}{" "}
+                      </label>
+                    </i>
+                    <label>
+                      {" "}
+                      <p>
+                        {" "}
+                        Por{" "}
+                        <strong>
+                          {val.autorResDto.nombre +
+                            " " +
+                            val.autorResDto.apellido}
+                        </strong>
+                      </p>
+                    </label>
                   </div>
                 </div>
               </div>
             </div>
-          )
+          );
         })}
       </Slider>
     </section>

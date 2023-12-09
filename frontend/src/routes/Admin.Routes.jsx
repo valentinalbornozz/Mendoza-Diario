@@ -14,26 +14,21 @@ import ListaUsuarios from "../components/dashboard/listas/lista-usuarios/ListaUs
 import Footer from "../components/footer/Footer.jsx";
 import HeaderDashboard from "../components/header/HeaderDashboard/HeaderDashboard";
 import VistaPrueba from "../components/dashboard/formularios/VistaPrueba.jsx";
-import Dashboard from "../pages/Dashboard/Dashboard.jsx";
 import Login2 from "../pages/Login/login2.jsx";
 import { connect } from "react-redux";
 import Layout from "../components/Layout/Layout.jsx";
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const AdminRoutes = () => {
-  
-
   return (
     <Layout>
       <HeaderDashboard />
-    <Routes>
-
-       {<Route path="/login2" element={<Login2 />} />}
-        <Route path="/dashboard" element={<Dashboard actor="admin"/>} />
+      <Routes>
+        {<Route path="/login2" element={<Login2 />} />}
         <Route path="/noticia/nueva" element={<CargarNoticia />} />
         <Route path="/noticia/listar" element={<ListaNoticias />} />
         <Route path="/noticia/editar/:id" element={<EditarNoticia />} />
@@ -47,8 +42,8 @@ const AdminRoutes = () => {
         <Route path="/usuario/nuevo" element={<CargarUsuario />} />
         <Route path="/usuario/listar" element={<ListaUsuarios />} />
         <Route path="/usuario/editar/:id" element={<EditarUsuario />} />
-    </Routes>
-       
+      </Routes>
+
       <Footer />
     </Layout>
   );
