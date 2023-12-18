@@ -1,12 +1,21 @@
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HeadDash from "./headDashboard";
 import "./HeaderStyle.css";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../reducer/authActions.js";
 
 export default function HeaderDashboard() {
   const [navbar, setNavbar] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/login2");
+  };
 
   return (
     <>
@@ -27,13 +36,17 @@ export default function HeaderDashboard() {
                   <Link to="/administrador/noticia/nueva">Cargar Noticia</Link>
                 </li>
                 <li>
-                  <Link to="/administrador/noticia/listar">Listar Noticias</Link>
+                  <Link to="/administrador/noticia/listar">
+                    Listar Noticias
+                  </Link>
                 </li>
                 <li>
                   <Link to="/administrador/seccion/nueva">Cargar Seccion</Link>
                 </li>
                 <li>
-                  <Link to="/administrador/seccion/listar">Listar Secciones</Link>
+                  <Link to="/administrador/seccion/listar">
+                    Listar Secciones
+                  </Link>
                 </li>
                 <li>
                   <Link to="/administrador/autor/nuevo">Cargar Autor</Link>
@@ -45,7 +58,14 @@ export default function HeaderDashboard() {
                   <Link to="/administrador/usuario/nuevo">Cargar Usuario</Link>
                 </li>
                 <li>
-                  <Link to="/administrador/usuario/listar">Listar Usuarios</Link>
+                  <Link to="/administrador/usuario/listar">
+                    Listar Usuarios
+                  </Link>
+                </li>
+                <li>
+                  <button className="button-logout" onClick={handleLogout}>
+                    Logout
+                  </button>
                 </li>
               </ul>
               <button className="barIco" onClick={() => setNavbar(!navbar)}>
@@ -57,12 +77,9 @@ export default function HeaderDashboard() {
               </button>
             </nav>
           </div>
-       
-  
         </header>
-
       </div>
-            <h2 className="panel__admin__dos">Panel del Administrador...</h2>
+      <h2 className="panel__admin__dos">Panel del Administrador...</h2>
     </>
   );
 }

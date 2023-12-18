@@ -1,4 +1,3 @@
-
 /* .head {
   cursor: pointer;
   background-color: #ef850b;
@@ -160,7 +159,7 @@ header li a:hover {
 header {
   padding: 0 0;
 }
-header nav .navbar{
+header nav .navbar {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -175,12 +174,12 @@ header ul {
   flex-wrap: wrap;
   gap: 15px;
 }
-.panel__admin{
+.panel__admin {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.panel__admin__dos{
+.panel__admin__dos {
   display: none;
 }
 header li {
@@ -201,7 +200,6 @@ header li a:hover {
   color: #b6943a;
 }
 
-
 /* Bar Ico */
 .barIco {
   font-size: 25px;
@@ -213,7 +211,6 @@ header li a:hover {
 }
 
 @media screen and (max-width: 768px) {
-
   .full-header {
     display: flex;
     position: fixed;
@@ -258,25 +255,25 @@ header li a:hover {
     /* overflow-y: scroll; */
     background-color: #fff;
   }
-/* Estilos comunes para la transición */
-header .navbar {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  top: 100%;
-  padding: 10px 15px;
-  transform: translateY(-10px);
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-}
+  /* Estilos comunes para la transición */
+  header .navbar {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    top: 100%;
+    padding: 10px 15px;
+    transform: translateY(-10px);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  }
 
-/* Cuando .navbar está abierto, ajusta las propiedades para mostrarlo */
-.navbar.open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
+  /* Cuando .navbar está abierto, ajusta las propiedades para mostrarlo */
+  .navbar.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
   header li {
     margin: 0;
     height: 15px;
@@ -289,9 +286,7 @@ header .navbar {
 
 @media screen and (max-width: 480px) {
   .full-header {
-    width: 100vw; 
-    
-
+    width: 100vw;
   }
 
   .head {
@@ -299,7 +294,6 @@ header .navbar {
   }
 
   header {
-     
     width: 20%;
   }
 
@@ -312,25 +306,25 @@ header .navbar {
     display: block;
     cursor: pointer;
   }
-/* Estilos comunes para la transición */
-header .navbar {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  top: 100%;
-  padding: 10px 15px;
-  transform: translateY(-10px);
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-}
+  /* Estilos comunes para la transición */
+  header .navbar {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    top: 100%;
+    padding: 10px 15px;
+    transform: translateY(-10px);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  }
 
-/* Cuando .navbar está abierto, ajusta las propiedades para mostrarlo */
-.navbar.open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
+  /* Cuando .navbar está abierto, ajusta las propiedades para mostrarlo */
+  .navbar.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
 
   /* header .navbar {
 
@@ -345,22 +339,37 @@ header .navbar {
 
   } */
 
-
   header li {
     margin: 0;
     height: auto;
   }
-  .panel__admin__dos{
+  .panel__admin__dos {
     text-align: center;
     /* color: #9c2e2e; */
     margin-top: 90px;
     display: block;
     /* background-color: #000000; */
   }
-  .panel__admin{
+  .panel__admin {
     display: none;
   }
   header li a {
     margin: 0;
   }
+}
+
+.button-logout {
+  background: #ff7a01;
+  padding: 10px;
+  color: #001925;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.button-logout:hover {
+  color: white;
 }
